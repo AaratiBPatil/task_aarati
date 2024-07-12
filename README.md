@@ -5,6 +5,7 @@
 		4) README file - To provide usage guide and basic information regarding db & other files
 		5) GIF folder - Contains the gif files & screenshots showing how does it working
 		6) Database folder - It contains database file (which is exported through db)
+		7) CSS files folder - It contains all the css files for this complete project
 
 ** Database name - task_db 
 
@@ -67,5 +68,7 @@
 9) contact.php
 	It contains data that is fetched to admin_tasks file in table format
 
+10) header.php
+	It contains the code to show alert messages when user do some activity
 
 

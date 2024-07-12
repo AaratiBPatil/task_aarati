@@ -3,6 +3,7 @@
 	/// Delete data from account form
 
 	include_once('config.php');
+	include_once('header.php');
 
 	if (isset($_POST['delete'])) {
 		$id= $_POST['id'];

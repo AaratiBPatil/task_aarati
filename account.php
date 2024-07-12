@@ -1,84 +1,18 @@
 <?php 
 	include_once('config.php');
 	include_once('apis/user_class.php');
+	include_once('header.php');
 ?>
 
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-	<style type="text/css">
-		body {
-			font-family: Arial, sans-serif;
-			background-color: #f4f4f4;
-			margin: 0;
-			padding: 0;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 100vh;
-		}
-		.wrapper {
-			display: flex;
-			flex-direction: row;
-			align-items: flex-start;
-			width: 100%;
-			max-width: 1200px;
-			gap: 20px;
-		}
-		.container {
-			background-color: white;
-			padding: 20px;
-			border-radius: 8px;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-			width: 300px;
-			box-sizing: border-box;
-		}
-		h1 {
-			margin-bottom: 20px;
-			font-size: 24px;
-			text-align: center;
-		}
-		.row {
-			margin-bottom: 15px;
-		}
-		label {
-			display: block;
-			margin-bottom: 5px;
-			font-weight: bold;
-		}
-		input[type="text"],
-		input[type="file"] {
-			width: 100%;
-			padding: 8px;
-			box-sizing: border-box;
-			border: 1px solid #ccc;
-			border-radius: 4px;
-		}
-		button {
-			width: 45%;
-			padding: 10px;
-			background-color: #4CAF50;
-			color: white;
-			border: none;
-			border-radius: 4px;
-			cursor: pointer;
-		}
-		button:hover {
-			background-color: #45a049;
-		}
-		.table-container {
-			background-color: white;
-			padding: 20px;
-			border-radius: 8px;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-			width: 100%;
-			max-width: 800px;
-		}
-	</style>
-</head>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="CSS/account.css">
+		<title>My account</title>
+	</head>
 
 <body>
 		 <!-- My Account Form -->
@@ -128,7 +62,7 @@
 							while ($row = mysqli_fetch_array($query_run)) {
 					?>			
 						<tr>
-							<td><?php echo $i++; ?></td>
+							<td><?php echo $i; ?></td>
 							<td><?php echo $row['name']; ?></td>
 							<td class="text-center align-middle"><img src="uploads/<?php echo $row['picture']; ?>" width="50px" height="30px" alt=""></td>
 							<td class="text-center align-middle">
@@ -144,7 +78,8 @@
 								</form>
 							</td>
 						</tr>
-					<?php 	
+						<?php 	
+							$i++;
 							}
 						} else {
 							echo "<tr><td colspan='5'>No record found</td></tr>";

@@ -1,84 +1,21 @@
 <?php 
 	include_once('config.php');
 	include_once('apis/user_class.php');
-
+	include_once('header.php');
 
 if(isset($_GET["err_msg"])){
     echo "<script>alert('". $_GET["err_msg"]. "')</script>";
 }
 
 ?>
-
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<style type="text/css">
-		body {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 100vh;
-			margin: 0;
-			background-color: #f4f4f9;
-		}
-		.container {
-			display: flex;
-			height: 500px;
-			width: 1000px;
-			box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-			overflow: hidden;
-		}
-		.container form {
-			flex: 1;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			padding: 20px;
-		}
-		.container .column2 {
-			background-color: blue;
-			color: white;
-		}
-		.row {
-			margin: 10px 0;
-			width: 80%;
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
-		}
-		.row input {
-			width: 100%;
-			padding: 10px;
-			border: 1px solid #ccc;
-			border-radius: 4px;
-			margin-bottom: 10px;
-		}
-		.row button {
-			width: 40%;
-			padding: 10px;
-			border: none;
-			border-radius: 17px;
-			cursor: pointer;
-		}
-		.container .column1 .row button {
-			background-color: #007bff;
-			color: white;
-		}
-		.container .column1 .row button:hover {
-			background-color: #0056b3;
-		}
-		.container .column2 .row button {
-			background-color: white;
-			color: blue;
-		}
-		.container .column2 .row button:hover {
-			background-color: #e6e6e6;
-		}
-	</style>
-</head>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="CSS/login_form.css">
+		<title>Login & signup form</title>
+	</head>
 <body>
 	<!------ Login Form ---------->
 

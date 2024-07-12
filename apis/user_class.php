@@ -5,19 +5,19 @@
 	/// User login
 
 	function add_user(){
-    global $conn;
+	    global $conn;
 
-    $checkUserQ = "SELECT * FROM tbl_users WHERE username='". $_REQUEST['username']."'";
-    // echo $checkUserQ;
-    $checkUserQResult = mysqli_query($conn, $checkUserQ);
-    if (mysqli_num_rows($checkUserQResult) == 0) {
-        $query = "INSERT INTO tbl_users(username,password) values('" . $_REQUEST['username'] . "','" . md5($_REQUEST['password']) . "')";
-        mysqli_query($conn, $query);
-        header('location:login_form.php?msg=1');
-    }else{
-        header('location:login_form.php?err_msg=username_exists');
-    }
-}
+	    $checkUserQ = "SELECT * FROM tbl_users WHERE username='". $_REQUEST['username']."'";
+	    // echo $checkUserQ;
+	    $checkUserQResult = mysqli_query($conn, $checkUserQ);
+	    if (mysqli_num_rows($checkUserQResult) == 0) {
+	        $query = "INSERT INTO tbl_users(username,password) values('" . $_REQUEST['username'] . "','" . md5($_REQUEST['password']) . "')";
+	        mysqli_query($conn, $query);
+	        header('location:login_form.php?msg=1');
+	    }else{
+	        header('location:login_form.php?err_msg=username_exists');
+	    }
+	}
 
 
 	/// To save contant details to db
@@ -94,54 +94,48 @@
 	/// Edit user details from myaccount form
 
 	function edit_user(){
-	
-		global $conn;
-	
-		$file_name=$str="";
-		if($_FILES['picture']['name']!=""){
+	    global $conn;
+
+	    $file_name=$str="";
+	    if(isset($_FILES['picture']['name']) && $_FILES['picture']['name']!=""){
 
 
-		$file_name=rand().'_'.$_FILES['picture']['name'];
+	    $file_name=rand().'_'.$_FILES['picture']['name'];
 
-		move_uploaded_file($_FILES['picture']['tmp_name'], 'uploads/'.$file_name);
-		$str=",`picture`='".$file_name."'";
-	}
-		mysqli_query($conn,"UPDATE `tbl_myaccount` SET 
-		`name`='".$_REQUEST['name']."',
-		`picture`='".$file_name."'
-		$str
-		WHERE `id`='".$_REQUEST['id']."'
-		");
-		header('location:account.php?msg=6');	
+	    move_uploaded_file($_FILES['picture']['tmp_name'], 'uploads/'.$file_name);
+	    $str=",`picture`='".$file_name."'";
+		}
+		
+	    $query = "UPDATE `tbl_myaccount` SET `name`='".$_REQUEST['name']."' $str WHERE `id`='".$_REQUEST['id']."'";
+	    mysqli_query($conn,$query);
+	    header('location:account.php?msg=6');	
 	}
 
 
 	/// Edit contact details from contact us form
 
 	function edit_contact(){
-	
-		global $conn;
+    	global $conn;
 
-		$file_name=$str="";
-		if($_FILES['image']['name']!=""){
+	    $file_name=$str="";
+	    if(isset($_FILES['image']['name']) && $_FILES['image']['name']!=""){
 
 
-		$file_name=rand().'_'.$_FILES['image']['name'];
+	    $file_name=rand().'_'.$_FILES['image']['name'];
 
-		move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/'.$file_name);
-		$str=",`image`='".$file_name."'";
-	}
-	
-		mysqli_query($conn,"UPDATE `tbl_contact` SET 
-			`username`='".$_REQUEST['username']."',
-			`address`='".$_REQUEST['address']."',
-			`city`='".$_REQUEST['city']."',
-			`message`='".$_REQUEST['message']."',
-			`image`='".$file_name."'
-			$str
-			WHERE `id`='".$_REQUEST['id']."'
-		");
-		header('location:admin_tasks.php?msg=7');	
+	    move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/'.$file_name);
+	    $str=",`image`='".$file_name."'";
+	   }
+
+	    $query = "UPDATE `tbl_contact` SET 
+	    `username`='".$_REQUEST['username']."',
+		`address`='".$_REQUEST['address']."',
+		`city`='".$_REQUEST['city']."',
+		`message`='".$_REQUEST['message']."'
+	    $str 
+	    WHERE `id`='".$_REQUEST['id']."'";
+	    mysqli_query($conn,$query);
+	    header('location:admin_tasks.php?msg=7');		
 	}
 
 

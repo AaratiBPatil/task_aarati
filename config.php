@@ -1,7 +1,7 @@
 <?php 
 
 
-	/// Contains database connection
+	/// database connections
 
 	
 	session_start();
